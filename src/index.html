@@ -11,6 +11,19 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <form class="search-form" id="search-form">
+      <input
+        type="text"
+        name="query"
+        autocomplete="off"
+        placeholder="Search images..."
+      />
+    </form>
+    <button id="loadMore" type="button">Загрузить еще</button>
+    <ul class="gallery">
+
+    </ul>
+    
     <script src="../node_modules/basiclightbox/dist/basicLightbox.min.js"></script>
     <script src="./apiService.js"></script>
     <script src="./index.js"></script>
