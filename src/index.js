@@ -7,33 +7,37 @@ const refs = {
   searchForm: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),
   loadMore: document.querySelector('#loadMore'),
+  btnSubmit: document.querySelector('#btnSubmit'),
 }
 
-refs.searchForm.addEventListener('input', debounce(onSearch, 500))
+refs.searchForm.addEventListener('submit', onSearch)
 refs.loadMore.addEventListener('click', onLoadMore)
+refs.loadMore.style.display = 'none'
 
 const apiServices = new ApiServices();
 
 function onSearch (e) {
-  apiServices.query = e.target.value;
+  e.preventDefault();
+  apiServices.query = e.currentTarget.elements.query.value;
   apiServices.resetPage()
-  apiServices.searchPhoto().then(markUpArticles)
-  const element = document.getElementById('loadMore');
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
-  
+  clearPage()
+  apiServices.searchPhoto().then(markUpArticles, onLoadMore).catch(error);
+  refs.loadMore.style.display = 'block'
+
+}
+function clearPage() {
+  refs.gallery.innerHTML = '';
 }
 
 function onLoadMore() {
   apiServices.searchPhoto().then(markUpArticles)
-  const element = document.querySelector('.gallery').lastElementChild;
-  element.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
-  
+  setTimeout(() => {
+    const element = document.querySelector('.gallery').lastElementChild;
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    })
+  }, 500);
 }
 
 function markUpArticles (article) {

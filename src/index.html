@@ -13,17 +13,18 @@
   <body>
     <form class="search-form" id="search-form">
       <input
+        class="input-area"
         type="text"
         name="query"
         autocomplete="off"
         placeholder="Search images..."
       />
+      <p><button id="btnSubmit" type="submit">Search</button></p>
     </form>
-    <button id="loadMore" type="button">Загрузить еще</button>
-    <ul class="gallery">
-
-    </ul>
     
+    <ul class="gallery">
+    </ul>
+    <button id="loadMore" type="button">Загрузить еще</button>
     <script src="../node_modules/basiclightbox/dist/basicLightbox.min.js"></script>
     <script src="./apiService.js"></script>
     <script src="./index.js"></script>
