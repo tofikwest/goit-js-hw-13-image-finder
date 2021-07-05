@@ -6,20 +6,22 @@
 *::before,
 *::after {
   box-sizing: border-box;
+
 }
 
 body {
-  width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
+  background-color: black;
   margin: 0 auto;
+ 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
     'Open Sans', 'Helvetica Neue', sans-serif;
   transition: color 150ms var(--timing-function), background-color 150ms var(--timing-function);
 }
 img {
-  width: 50%;
-  height: auto;
+  display: block;
+  width: 320px;
+  max-height: 213px;
+  cursor: pointer;
 }
 
 .search-form {
@@ -30,28 +32,55 @@ img {
   padding-top: 50px;
 }
 .input-area {
+  height: 40px;
   align-self: center;
-  height: 50px;
   font-size: 21px;
+  border: 3px solid rgb(24, 86, 202);
+  font-family: Roboto;
+  border-radius: 5px;
+  margin-right: 5px;
+  outline: none;
 }
-button {
+
+button, #btnSubmit {
   display: block;
   margin: 25px auto;
- background-color: cornflowerblue;
- color: aliceblue;
- outline: none;
- border-radius: 5px;
- padding: 5px;
- cursor: pointer;
+  background-color: rgb(24, 86, 202);
+  font-family: Roboto;
+  font-size: 20px;
+  color: aliceblue;
+  outline: none;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  transition: color 550ms cubic-bezier(0.075, 0.82, 0.165, 1), background-color 1000ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
+#btnSubmit:hover,
+#loadMore:hover {
+  color: rgb(187, 83, 247);
+  background-color: rgb(3, 46, 126);
+}
+
 .gallery {
   display: flex;
   list-style: none;
+  justify-content: center;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
+}
+li {
+  margin-top: 15px;
+  border: 1px solid white;
+  padding: 5px;
+}
+.card-container:not(:last-child) {
+  margin-right: 25px;
 }
 .photo-card {
-
+  
   align-items: center;
 }
 .card-container {
@@ -59,4 +88,17 @@ button {
   flex-wrap: wrap;
   align-items: center;
   
+}
+.stats {
+  display: flex;
+  color: aliceblue;
+  justify-content: space-between;
+}
+.stats-item {
+  display: flex;
+  align-items: center;
+  
+}
+.material-icons {
+  margin-right: 4px;
 }
