@@ -21,7 +21,9 @@ function onSearch (e) {
   apiServices.query = e.currentTarget.elements.query.value;
   apiServices.resetPage()
   clearPage()
-  apiServices.searchPhoto().then(markUpArticles, onLoadMore).catch(error);
+  apiServices.searchPhoto()
+  .then(markUpArticles, onLoadMore)
+  .catch(error => error)
   refs.loadMore.style.display = 'block'
 
 }
