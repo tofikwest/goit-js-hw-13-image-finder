@@ -32,6 +32,7 @@ function clearPage() {
 }
 
 function onLoadMore() {
+  refs.loadMore.disabled = true;
   apiServices.searchPhoto().then(markUpArticles)
   setTimeout(() => {
     const element = document.querySelector('.gallery').lastElementChild;
@@ -39,6 +40,7 @@ function onLoadMore() {
       behavior: 'smooth',
       block: 'end',
     })
+    refs.loadMore.disabled = false;
   }, 500);
 }
 
