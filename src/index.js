@@ -18,13 +18,18 @@ const apiServices = new ApiServices();
 
 function onSearch (e) {
   e.preventDefault();
+  
   apiServices.query = e.currentTarget.elements.query.value;
   apiServices.resetPage()
   clearPage()
   apiServices.searchPhoto()
-  .then(markUpArticles, onLoadMore)
+  .then(images => {
+    markUpArticles(images);
+    refs.loadMore.style.display = 'block'
+    if (images.length < 12) refs.loadMore.style.display = 'none';
+  })
   .catch(error => error)
-  refs.loadMore.style.display = 'block'
+  
 
 }
 function clearPage() {
@@ -32,18 +37,27 @@ function clearPage() {
 }
 
 function onLoadMore() {
+  
   refs.loadMore.disabled = true;
-  apiServices.searchPhoto().then(markUpArticles)
-  setTimeout(() => {
-    const element = document.querySelector('.gallery').lastElementChild;
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    })
+  apiServices.searchPhoto().then(images => {
+    markUpArticles(images);
+    scrollDown();
     refs.loadMore.disabled = false;
-  }, 500);
+    if (images.length < 12) refs.loadMore.style.display = 'none';
+  })
+  
 }
 
 function markUpArticles (article) {
   refs.gallery.insertAdjacentHTML('beforeend', articlesTpl(article))
+
+  
+}
+function scrollDown () {
+  const element = document.querySelector('.gallery').lastElementChild;
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    })
+    
 }
